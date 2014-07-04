@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="hairy">
+<head>
+  <title>hairy-ironman</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="/js/app.js"></script>
+
+  <style>
+    tr
+    {
+      margin-bottom: 6px;
+      width: 100%;
+    }
+    tr
+    {
+      margin-right: 20px;
+    }
+    .titles
+    {
+      font-weight: bold;
+    }
+    .input
+    {
+      background-color: white;
+      z-index: 2;
+      margin-top: 20px;
+    }
+    .artist
+    {
+      width: 70%;
+    }
+    .time
+    {
+      width: 15%;
+    }
+    .venue
+    {
+      width: 15%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" ng-controller="ListController">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <h2>hairy-ironman</h2>
+      <p>
+        See the future of Way out west.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2 input-group input-group-lg input">
+      <input type="text" ng-model="search" placeholder="Search" class="form-control">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <td class="titles artist">Artist</td>
+              <td class="titles time">Time</td>
+              <td class="titles venue">Venue</td>
+            </tr>
+          </thead>
+          <tr ng-repeat="post in posts | filter:search:title:strict | orderBy:'title'">
+            <td>{{post.title}}</td>
+            <td ng-show="post.time_start">{{post.time_start}}</td>
+            <td ng-hide="post.time_start">Not set</td>
+            <td ng-show="post.venue.title">{{post.venue.title}}</td>
+            <td ng-hide="post.venue.title">Not set</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
